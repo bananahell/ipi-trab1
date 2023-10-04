@@ -1,6 +1,7 @@
 % Putting source folder in Matlab path
 clear;
 clc;
+close all;
 
 % Check if Windows or Unix for different bars
 comp = computer();
@@ -20,14 +21,28 @@ src = [home barChar 'code'];
 disp("Adding " + src + " to the Matlab Path");
 addpath(src);
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Project's code
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% If true, show execution time of each function
+global showTimes;
+showTimes = false;
+tStartAll = tic;
 imgPath = "." + barChar + "img" + barChar;
 
-[yComp, uComp, vComp] = readYuv(imgPath + "foreman.yuv", 352, 288, 2);
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Question 1
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+[rgbImg, rgbImgBetter, rgbImgLarge, rgbImgBetterLarge] = yuvEnlarger(imgPath + "foreman.yuv", 352, 288, 10);
 
-largeY = enlargeImg(yComp);
+figure("Name", "YUV to RGB image");
+imshow(rgbImg, []);
+figure("Name", "YUV better to RGB image");
+imshow(rgbImgBetter, []);
 
-figure;
-imshow(yComp);
-figure;
-imshow(largeY);
+figure("Name", "YUV to RGB image large");
+imshow(rgbImgLarge, []);
+figure("Name", "YUV better to RGB image large");
+imshow(rgbImgBetterLarge, []);
+
+disp("All done in " + toc(tStartAll) + " seconds!");

@@ -9,9 +9,10 @@
 % heigth - height of the image, so the Y component.
 % frame - frame in the video where the image is to be extracted from.
 %
-% Each of the YUV components.
+% Returns each of the YUV components.
 %
 function [Y, U, V] = readYuv(fileName, width, height, frame)
+    global showTimes;
     % Starts timer and gets basic variables
     tStart = tic;
     resolution = width * height;
@@ -24,9 +25,13 @@ function [Y, U, V] = readYuv(fileName, width, height, frame)
     seek(fileReader, startByte);
 
     % Extracts the YUV components from the fileReader
-    Y = reshape(read(fileReader, resolution), width, height);
-    U = reshape(read(fileReader, resolution/4), width/2, height/2);
-    V = reshape(read(fileReader, resolution/4), width/2, height/2);
+    % The file came crooked, so I needed to flip and rotate the image
+    Y = rot90(flip(reshape(read(fileReader, resolution), width, height), 2));
+    U = rot90(flip(reshape(read(fileReader, resolution/4), width/2, height/2), 2));
+    V = rot90(flip(reshape(read(fileReader, resolution/4), width/2, height/2), 2));
 
-    disp("readYuv done in " + toc(tStart) + " seconds!");
+    % Modified in main
+    if showTimes
+        disp("readYuv done in " + toc(tStart) + " seconds!");
+    end
 end
