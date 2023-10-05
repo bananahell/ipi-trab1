@@ -1,4 +1,4 @@
-% Enlarge image
+% Enlarge image.
 %
 % Enlarges an image by taking each of its pixels and copying them to grids
 % of 2x2 pixels, "doubling each pixels' width and height size".
@@ -37,7 +37,7 @@ function largeImg = enlargeImg(origImg)
     end
 
     % Modified in main
-    if showTimes
+    if showTimes > 2
         disp("enlargeImg done in " + toc(tStart) + " seconds!");
     end
 end

@@ -1,4 +1,4 @@
-% YUV Enlarger
+% YUV Enlarger.
 %
 % This is the entire question 1 of the course's project, so it reads an YUV
 % file appropriately, turns it into a RGB image, turns it into a RGB image
@@ -15,7 +15,7 @@
 %
 function [rgbImg, rgbImgBetter, rgbImgLarge, rgbImgBetterLarge] = yuvEnlarger(fileName, width, height, frame)
     global showTimes;
-    tStartYuvEnlarger = tic;
+    tStart = tic;
 
     % Read the YUV file
     [yComp, uComp, vComp] = readYuv(fileName, width, height, frame);
@@ -63,7 +63,7 @@ function [rgbImg, rgbImgBetter, rgbImgLarge, rgbImgBetterLarge] = yuvEnlarger(fi
     rgbImgBetterLarge = ycbcr2rgb(uint8(yuvImgBetterLarge));
 
     % Modified in main
-    if showTimes
-        disp("yuvEnlarger done in " + toc(tStartYuvEnlarger) + " seconds!");
+    if showTimes > 1
+        disp("yuvEnlarger done in " + toc(tStart) + " seconds!");
     end
 end

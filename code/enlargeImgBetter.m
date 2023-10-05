@@ -1,4 +1,4 @@
-% Enlarge image better
+% Enlarge image better.
 %
 % Enlarges an image by taking each of its pixels and getting their averages
 % with the next pixel in the axis, if possible, to grids of 2x2 pixels,
@@ -51,7 +51,7 @@ function largeImg = enlargeImgBetter(origImg)
     end
 
     % Modified in main
-    if showTimes
+    if showTimes > 2
         disp("enlargeImgBetter done in " + toc(tStart) + " seconds!");
     end
 end

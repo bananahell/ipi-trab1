@@ -1,4 +1,4 @@
-% Read YUV
+% Read YUV.
 %
 % Reads an YUV image from a byte encoded file. The image is organized in
 % the file as 4:2:0, so it's actually a video, with its Y component double
@@ -31,7 +31,7 @@ function [Y, U, V] = readYuv(fileName, width, height, frame)
     V = rot90(flip(reshape(read(fileReader, resolution/4), width/2, height/2), 2));
 
     % Modified in main
-    if showTimes
+    if showTimes > 2
         disp("readYuv done in " + toc(tStart) + " seconds!");
     end
 end
