@@ -33,49 +33,58 @@ global showTimes;
 showTimes = 1;
 tStart = tic;
 imgPath = "." + barChar + "img" + barChar;
+imgResultsPath = imgPath + barChar + "results" + barChar;
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Question 1
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 [rgbImg, rgbImgBetter, rgbImgLarge, rgbImgBetterLarge] = yuvEnlarger(imgPath + "foreman.yuv", 352, 288, 10);
 
-figure("Name", "YUV to RGB image");
+figure("Name", "Q1-1 YUV to RGB");
 imshow(rgbImg, []);
-figure("Name", "YUV better to RGB image");
+imwrite(rgbImg, convertStringsToChars(imgResultsPath + "Q1-1 YUV to RGB.png"));
+figure("Name", "Q1-2 YUV to RGB better");
 imshow(rgbImgBetter, []);
+imwrite(rgbImgBetter, convertStringsToChars(imgResultsPath + "Q1-2 YUV to RGB better.png"));
 
-figure("Name", "YUV to RGB image large");
+figure("Name", "Q1-3 YUV to RGB large");
 imshow(rgbImgLarge, []);
-figure("Name", "YUV better to RGB image large");
+imwrite(rgbImgLarge, convertStringsToChars(imgResultsPath + "Q1-3 YUV to RGB large.png"));
+figure("Name", "Q1-4 YUV to RGB better large");
 imshow(rgbImgBetterLarge, []);
+imwrite(rgbImgBetterLarge, convertStringsToChars(imgResultsPath + "Q1-4 YUV to RGB better large.png"));
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Question 2
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 filterResults = sharpenFilters(convertStringsToChars(imgPath + "Image1.pgm"));
 
-figure("Name", "Before LaPlace kernel 3x3 center 8");
+figure("Name", "Q2-1 LaPlace Original");
 imshow(filterResults.imgOriginal, []);
+imwrite(filterResults.imgOriginal, convertStringsToChars(imgResultsPath + "Q2-1 LaPlace Original.png"));
 
-figure("Name", "LaPlace Filtered kernel 3x3 center 8");
+figure("Name", "Q2-2 LaPlace filtered (k 3x3 c-8)");
 imshow(filterResults.laplaceFiltered3x3center8, []);
-figure("Name", "LaPlace Added kernel 3x3 center 8");
+imwrite(filterResults.laplaceFiltered3x3center8, convertStringsToChars(imgResultsPath + "Q2-2 LaPlace filtered (k 3x3 c-8).png"));
+figure("Name", "Q2-3 LaPlace added (k 3x3 c-8)");
 imshow(filterResults.laplaceFinal3x3center8, []);
+imwrite(filterResults.laplaceFinal3x3center8, convertStringsToChars(imgResultsPath + "Q2-3 LaPlace added (k 3x3 c-8).png"));
 
-figure("Name", "LaPlace Filtered kernel 3x3 center 4");
+figure("Name", "Q2-4 LaPlace filtered (k 3x3 c-4)");
 imshow(filterResults.laplaceFiltered3x3center4, []);
-figure("Name", "LaPlace Added kernel 3x3 center 4");
+imwrite(filterResults.laplaceFiltered3x3center4, convertStringsToChars(imgResultsPath + "Q2-4 LaPlace filtered (k 3x3 c-4).png"));
+figure("Name", "Q2-5 LaPlace added (k 3x3 c-4)");
 imshow(filterResults.laplaceFinal3x3center4, []);
+imwrite(filterResults.laplaceFinal3x3center4, convertStringsToChars(imgResultsPath + "Q2-5 LaPlace added (k 3x3 c-4).png"));
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Question 3
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 rejectNotchFilterResult = rejectNotchFilter(convertStringsToChars(imgPath + "moire.tif"));
 
-figure("Name", "Reject Notch Filter Original");
+figure("Name", "Q3-1 Reject Notch original");
 imshow(rejectNotchFilterResult, []);
+imwrite(rejectNotchFilterResult, convertStringsToChars(imgResultsPath + "Q3-1 Reject Notch original.png"));
 
 % Modified in the beginning of the project's code
 if showTimes > 0
