@@ -1,8 +1,8 @@
 % Read YUV.
 %
-% Reads an YUV image from a byte encoded file. The image is organized in
-% the file as 4:2:0, so it's actually a video, with its Y component double
-% the width and height dimensions of the U and V components.
+% Reads an YUV image from a byte encoded file. The image is organized in the
+% file as 4:2:0, so it's actually a video, with its Y component double the width
+% and height dimensions of the U and V components.
 %
 % fileName - The name of the file.
 % width - width of the image, so the Y component.
@@ -16,8 +16,8 @@ function [Y, U, V] = readYuv(fileName, width, height, frame)
     % Starts timer and gets basic variables
     tStart = tic;
     resolution = width * height;
-    % Gets right frame by multiplying it by the size of the YUV frames,
-    % so Y = 1, U = 0.25, V = 0.25
+    % Gets right frame by multiplying it by the size of the YUV frames, so
+    % Y = 1, U = 0.25, V = 0.25
     startByte = (resolution * 1.5) * (frame);
 
     % Reads the file and goes to right frame

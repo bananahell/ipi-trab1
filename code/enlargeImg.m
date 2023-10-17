@@ -1,7 +1,7 @@
 % Enlarge image.
 %
-% Enlarges an image by taking each of its pixels and copying them to grids
-% of 2x2 pixels, "doubling each pixels' width and height size".
+% Enlarges an image by taking each of its pixels and copying them to grids of
+% 2x2 pixels, "doubling each pixels' width and height size".
 %
 % origImg - The image to have its pixels "doubled".
 %
@@ -14,9 +14,8 @@ function largeImg = enlargeImg(origImg)
     [width, height] = size(origImg);
     largeImg = zeros(width * 2, height * 2);
 
-    % First makes the large image with the original pixels and 3 black
-    % pixels to its right and below it, waiting to be filled by the
-    % original pixel's value
+    % First makes the large image with the original pixels and 3 black pixels to
+    % its right and below it, waiting to be filled by the original pixel's value
     for i = 1:width
         for j = 1:height
             largeImg(((i-1)*2)+1, ((j-1)*2)+1) = origImg(i, j);

@@ -1,8 +1,8 @@
 % YUV Enlarger.
 %
-% This is the entire question 1 of the course's project, so it reads an YUV
-% file appropriately, turns it into a RGB image, turns it into a RGB image
-% in a better way, then finally makes larger versions of each.
+% This is the entire question 1 of the course's project, so it reads an YUV file
+% appropriately, turns it into a RGB image, turns it into a RGB image in a
+% better way, then finally makes larger versions of each.
 % It calls readYuv, enlargeImg, and enlargeImgBetter.
 %
 % fileName - The name of the file.
@@ -10,12 +10,13 @@
 % heigth - height of the image, so the Y component.
 % frame - frame in the video where the image is to be extracted from.
 %
-% Returns the original RGB image, the RGB made better, and the larger
-% versions of each.
+% Returns the original RGB image, the RGB made better, and the larger versions
+% of each.
 %
-function [rgbImg, rgbImgBetter, rgbImgLarge, rgbImgBetterLarge] = yuvEnlarger(fileName, width, height, frame)
+function filterResults = yuvEnlarger(fileName, width, height, frame)
     global showTimes;
     tStart = tic;
+    filterResults = struct;
 
     % Read the YUV file
     [yComp, uComp, vComp] = readYuv(fileName, width, height, frame);
@@ -37,8 +38,8 @@ function [rgbImg, rgbImgBetter, rgbImgLarge, rgbImgBetterLarge] = yuvEnlarger(fi
     yuvImgBetter(:,:,3) = betterLargeV;
 
     % Turn both YUV images into RGB images
-    rgbImg = ycbcr2rgb(yuvImg);
-    rgbImgBetter = ycbcr2rgb(yuvImgBetter);
+    filterResults.rgbImg = ycbcr2rgb(yuvImg);
+    filterResults.rgbImgBetter = ycbcr2rgb(yuvImgBetter);
 
     % Enlarges each of the 3 components to get an overall larger image
     largeY = enlargeImg(yComp);
@@ -59,8 +60,8 @@ function [rgbImg, rgbImgBetter, rgbImgLarge, rgbImgBetterLarge] = yuvEnlarger(fi
     yuvImgBetterLarge(:,:,3) = betterLargeV;
 
     % Turn both larger YUV images into larger RGB images
-    rgbImgLarge = ycbcr2rgb(uint8(yuvImgLarge));
-    rgbImgBetterLarge = ycbcr2rgb(uint8(yuvImgBetterLarge));
+    filterResults.rgbImgLarge = ycbcr2rgb(uint8(yuvImgLarge));
+    filterResults.rgbImgBetterLarge = ycbcr2rgb(uint8(yuvImgBetterLarge));
 
     % Modified in main
     if showTimes > 1
